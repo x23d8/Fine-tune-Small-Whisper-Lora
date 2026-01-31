@@ -39,7 +39,7 @@ def main():
             eval_strategy="steps",
             per_device_eval_batch_size=8,
             predict_with_generate=True,
-            generation_max_length=225,
+            generation_max_length=448,
             save_steps=cfg['save_steps'],
             eval_steps=cfg['eval_steps'],
             logging_steps=cfg['logging_steps'],
@@ -81,6 +81,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
