@@ -78,11 +78,12 @@ class DataCollatorSpeechSeq2SeqWithPadding:
         labels = labels_batch["input_ids"].masked_fill(labels_batch.attention_mask.ne(1), -100)
 
         # Delete bos_token 'cause it's already implemented in forward step while fine-tune model 
-        if (labels[:, 0] == self.processor.tokenizer.bos_token_id).all().cpu().item():
+        if (labels[:, 0].detach() == self.processor.tokenizer.bos_token_id).all():
             labels = labels[:, 1:]
 
         batch["labels"] = labels
         return batch
+
 
 
 
