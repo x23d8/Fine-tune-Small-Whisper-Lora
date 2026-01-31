@@ -34,7 +34,7 @@ def main():
             gradient_accumulation_steps=cfg['gradient_accumulation_steps'],
             learning_rate=float(cfg['learning_rate']),
             warmup_steps=cfg['warmup_steps'],
-            max_steps=50000, 
+            max_steps=cfg['max_steps'], 
             fp16=cfg['fp16'],
             eval_strategy="steps",
             per_device_eval_batch_size=8,
@@ -81,6 +81,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
