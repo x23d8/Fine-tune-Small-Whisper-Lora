@@ -5,17 +5,18 @@ dataset_name: "nguyendv02/ViMD_Dataset"
 
 # Training arguments
 output_dir: "/kaggle/working/whisper-small-finetune-checkpoints"
-batch_size: 1 #16
+batch_size: 1 # P100:1; 16
 learning_rate: 1.0e-5
 num_epochs: 3
 warmup_steps: 500
 save_steps: 1000
 eval_steps: 1000
 logging_steps: 25
-gradient_accumulation_steps: 16 #2
+gradient_accumulation_steps: 16 #P100:16; 2
 fp16: true
 
 # Input Kaggle Dataset
 dataset_path: "/kaggle/input/vimd-whisper-arrow/vimd-whisper-arrow"
+
 
 
