@@ -36,7 +36,7 @@ def main():
             max_steps=50000, 
             gradient_checkpointing=True,
             fp16=cfg['fp16'],
-            evaluation_strategy="steps",
+            eval_strategy="steps",
             per_device_eval_batch_size=8,
             predict_with_generate=True,
             generation_max_length=225,
@@ -80,6 +80,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
