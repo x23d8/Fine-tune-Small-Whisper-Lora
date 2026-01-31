@@ -1,6 +1,6 @@
 import yaml, os
 from transformers import WhisperProcessor, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, Seq2SeqTrainer
-from src.data_loader import WhisperDataHandler, DataCollatorSpeech2SeqWithPadding
+from src.data_loader import WhisperDataHandler, DataCollatorSpeechSeq2SeqWithPadding
 from src.metrics import WERMetric
 
 def load_config(path="configs/config.yaml"):
@@ -26,7 +26,7 @@ def main():
     # 3. Prepare Data
     data_handler = WhisperDataHandler(cfg, processor)
     full_dataset = data_handler.load_data()
-    data_collator = DataCollatorSpeech2SeqWithPadding(processor=processor)
+    data_collator = DataCollatorSpeechSeq2SeqWithPadding(processor=processor)
     metric_computer = WERMetric(processor.tokenizer)
 
     # 4. Training Arguments
@@ -83,3 +83,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
