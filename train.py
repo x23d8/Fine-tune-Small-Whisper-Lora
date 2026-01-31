@@ -20,7 +20,7 @@ def main():
     model.config.forced_decoder_ids = None
     model.config.suppress_tokens = []
     model.config.use_cache = False  
-    model.gradient_checkpointing_enable()
+    # model.gradient_checkpointing_enable()
 
     # 3. Prepare Data
     data_handler = WhisperDataHandler(cfg, processor)
@@ -36,7 +36,7 @@ def main():
             learning_rate=float(cfg['learning_rate']),
             warmup_steps=cfg['warmup_steps'],
             max_steps=50000, 
-            gradient_checkpointing=True,
+            #gradient_checkpointing=True,
             fp16=cfg['fp16'],
             eval_strategy="steps",
             per_device_eval_batch_size=8,
@@ -82,6 +82,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
