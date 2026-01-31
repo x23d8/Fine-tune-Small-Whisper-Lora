@@ -20,9 +20,6 @@ def main():
     model.config.forced_decoder_ids = None
     model.config.suppress_tokens = []
 
-    # Uncomment if using multiple GPUs
-    model.parallelize()
-
     # 3. Prepare Data
     data_handler = WhisperDataHandler(cfg, processor)
     full_dataset = data_handler.load_data()
@@ -83,4 +80,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
