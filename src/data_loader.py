@@ -54,21 +54,11 @@ class WhisperDataHandler:
                 "test": process_split(raw_datasets["test"])
             }
         else:
-            zip_path = self.config['dataset_path']
-            extract_path = r"/kaggle/working/vimd_arrow"
-
-            os.makedirs(extract_path, exist_ok=True)
-
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(extract_path)
-
-            os.makedirs(extract_path, exist_ok=True)
-            print("Finish Extract:", os.listdir(extract_path))
-
+            dataset_path = self.config['dataset_path']
             dataset_dict = {
-                "train": load_from_disk(os.path.join(extract_path, "ViMD_train_features")),
-                "valid": load_from_disk(os.path.join(extract_path, "ViMD_valid_features")),
-                "test": load_from_disk(os.path.join(extract_path, "ViMD_test_features"))
+                "train": load_from_disk(os.path.join(dataset_path, "ViMD_train_features")),
+                "valid": load_from_disk(os.path.join(dataset_path, "ViMD_valid_features")),
+                "test": load_from_disk(os.path.join(dataset_path, "ViMD_test_features"))
             }
 
         return dataset_dict
@@ -92,3 +82,4 @@ class DataCollatorSpeechSeq2SeqWithPadding:
 
         batch["labels"] = labels
         return batch
+
