@@ -22,7 +22,7 @@ def main():
 
     # 3. Prepare Data
     data_handler = WhisperDataHandler(cfg, processor)
-    full_dataset = data_handler.load_dataset()
+    full_dataset = data_handler.load_dataset(from_arrow=True)
     data_collator = DataCollatorSpeechSeq2SeqWithPadding(processor=processor)
     metric_computer = WERMetric(processor.tokenizer)
 
@@ -80,6 +80,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
