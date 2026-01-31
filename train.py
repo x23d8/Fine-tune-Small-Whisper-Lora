@@ -19,6 +19,8 @@ def main():
 
     model.config.forced_decoder_ids = None
     model.config.suppress_tokens = []
+    model.config.use_cache = False  
+    model.gradient_checkpointing_enable()
 
     # 3. Prepare Data
     data_handler = WhisperDataHandler(cfg, processor)
@@ -59,7 +61,7 @@ def main():
             eval_dataset=full_dataset["test"],
             data_collator=data_collator,
             compute_metrics=metric_computer.compute_metrics,
-            tokenizer=processor.feature_extractor,
+            processing_class=processor.feature_extractor,
         )
     
     # 6.Auto-Resume Logic
@@ -80,6 +82,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
