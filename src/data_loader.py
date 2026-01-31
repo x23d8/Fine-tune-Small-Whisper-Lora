@@ -4,6 +4,7 @@ import soundfile as sf
 from typing import Dict
 import io, os
 import zipfile
+from dataclasses import dataclass
 
 TARGET_SR = 16000
 
@@ -82,5 +83,6 @@ class DataCollatorSpeechSeq2SeqWithPadding:
 
         batch["labels"] = labels
         return batch
+
 
 
