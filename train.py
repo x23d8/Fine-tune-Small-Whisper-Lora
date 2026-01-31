@@ -51,6 +51,7 @@ def main():
             greater_is_better=False,
             save_total_limit=3,
             push_to_hub=False, 
+            disable_tqdm=False
         )
 
     # 5.Initialize Trainer 
@@ -82,6 +83,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
