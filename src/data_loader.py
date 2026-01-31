@@ -63,7 +63,7 @@ class WhisperDataHandler:
 
         return dataset_dict
 
-
+@dataclass
 class DataCollatorSpeechSeq2SeqWithPadding:
     processor: any
 
@@ -82,4 +82,5 @@ class DataCollatorSpeechSeq2SeqWithPadding:
 
         batch["labels"] = labels
         return batch
+
 
