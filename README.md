@@ -46,6 +46,7 @@ pip install torch==2.8.0+cu126 torchvision torchaudio --index-url https://downlo
 
 ```bash
 pip install transformers datasets evaluate jiwer pyyaml soundfile wandb
+pip install --upgrade -q wandb
 ```
 
 ---
@@ -130,3 +131,4 @@ whisper-finetune/
   * số epoch
   * đường dẫn dataset
   * logging / save steps
+
