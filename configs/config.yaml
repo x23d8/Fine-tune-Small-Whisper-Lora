@@ -17,7 +17,8 @@ gradient_accumulation_steps: 2 #P100:16; 2
 fp16: true
 
 # Input Kaggle Dataset
-dataset_path: "/kaggle/input/vimd-whisper-arrow/vimd-whisper-autotruncate"
+dataset_path: "/kaggle/input/vimd-whisper-autotruncate/vimd-whisper-autotruncate"
+
 
 
 
