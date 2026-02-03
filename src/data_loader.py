@@ -29,7 +29,8 @@ class WhisperDataHandler:
 
         # Feature Extractore
         batch["input_features"] = self.processor.feature_extractor(array, sampling_rate=TARGET_SR).input_features[0] #float32
-        batch["labels"] = self.processor.tokenizer(batch["text"], max_length=448, truncation=True).input_ids[:448] #int64
+        max_len = self.processor.tokenizer.model_max_length
+        batch["labels"] = self.processor.tokenizer(batch["text"], max_length=max_len, truncation=True).input_ids #int64
         return batch
 
     def load_dataset(self, from_arrow=False):
@@ -83,6 +84,7 @@ class DataCollatorSpeechSeq2SeqWithPadding:
 
         batch["labels"] = labels
         return batch
+
 
 
 
