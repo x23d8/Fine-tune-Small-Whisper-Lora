@@ -43,7 +43,8 @@ def main():
             save_steps=cfg['save_steps'],
             eval_steps=cfg['eval_steps'],
             logging_steps=cfg['logging_steps'],
-            report_to=["tensorboard"],
+            report_to=["wandb"],
+            run_name="whisper-finetune-v1",
             load_best_model_at_end=True,
             metric_for_best_model="wer",
             greater_is_better=False,
@@ -81,6 +82,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
