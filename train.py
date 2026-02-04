@@ -2,12 +2,21 @@ import yaml, os
 from transformers import WhisperProcessor, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, Seq2SeqTrainer
 from src.data_loader import WhisperDataHandler, DataCollatorSpeechSeq2SeqWithPadding
 from src.metrics import WERMetric
+from peft import LoraConfig, get_peft_model, TaskType
 
 def load_config(path="configs/config.yaml"):
     with open(path, "r") as f:
         return yaml.safe_load(f)
 
 def main():
+    lora_config = LoraConfig(
+        r=16,
+        lora_alpha=32,
+        target_modules=["q_proj", "v_proj", "k_proj", "out_proj"],
+        lora_dropout=0.05,
+        bias="none",
+        task_type=TaskType.SEQ_2_SEQ_LM,
+    )
 
     # 1. Loading configs
     cfg = load_config()
@@ -16,6 +25,9 @@ def main():
     # 2. Load processor & model
     processor = WhisperProcessor.from_pretrained(cfg['model_name'], language=cfg['language'], task=cfg['task'])
     model = WhisperForConditionalGeneration.from_pretrained(cfg['model_name'])
+    model = get_peft_model(model, lora_config)
+    model.model.encoder.requires_grad_(False)
+    model.print_trainable_parameters()
 
     model.config.forced_decoder_ids = None
     model.config.suppress_tokens = []
