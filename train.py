@@ -26,7 +26,7 @@ def main():
     processor = WhisperProcessor.from_pretrained(cfg['model_name'], language=cfg['language'], task=cfg['task'])
     model = WhisperForConditionalGeneration.from_pretrained(cfg['model_name'])
     model = get_peft_model(model, lora_config)
-    model.model.encoder.requires_grad_(False)
+    model.get_encoder().requires_grad_(False)
     model.print_trainable_parameters()
 
     model.config.forced_decoder_ids = None
