@@ -15,7 +15,7 @@ def main():
         target_modules=["q_proj", "v_proj", "k_proj", "out_proj"],
         lora_dropout=0.05,
         bias="none",
-        # disable task_type as it make the model input the input_ids
+        # disable task_type as it make the model input the input_ids according to github 
         # task_type=TaskType.SEQ_2_SEQ_LM, 
     )
 
